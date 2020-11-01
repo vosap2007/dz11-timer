@@ -124,22 +124,15 @@ function _defineProperties(target, props) { for (var i = 0; i < props.length; i+
 
 function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
 
-/*const CountdownTimer = ({
-  selector: '#timer-1',
-  targetDate: new Date('Nov 17, 2021'),
-});*/
-
-/*new CountdownTimer({
-  selector: '#timer-1',
-  targetDate: new Date('Jul 17, 2019'),
-});*/
 var Timer = /*#__PURE__*/function () {
   function Timer(_ref) {
-    var onTick = _ref.onTick;
+    var selector = _ref.selector,
+        targetDate = _ref.targetDate;
 
     _classCallCheck(this, Timer);
 
-    this.onTick = onTick;
+    this.refElement = document.querySelector(selector);
+    this.date = targetDate;
   }
 
   _createClass(Timer, [{
@@ -148,12 +141,43 @@ var Timer = /*#__PURE__*/function () {
       var _this = this;
 
       setInterval(function () {
-        var currentTime = Date.now();
-        var deltaTime = timer.targetDate - currentTime;
-        var time = getTimeComponents(deltaTime);
-
-        _this.onTick(time);
+        _this.onTick();
       }, 1000);
+    }
+  }, {
+    key: "pad",
+    value: function pad(value) {
+      return String(value).padStart(2, '0');
+    }
+  }, {
+    key: "getTimeComponents",
+    value: function getTimeComponents() {
+      var days = this.pad(Math.floor(this.deltaTime / (1000 * 60 * 60 * 24)));
+      var hours = this.pad(Math.floor(this.deltaTime % (1000 * 60 * 60 * 24) / (1000 * 60 * 60)));
+      var mins = this.pad(Math.floor(this.deltaTime % (1000 * 60 * 60) / (1000 * 60)));
+      var secs = this.pad(Math.floor(this.deltaTime % (1000 * 60) / 1000));
+      return {
+        days: days,
+        hours: hours,
+        mins: mins,
+        secs: secs
+      };
+    }
+  }, {
+    key: "onTick",
+    value: function onTick() {
+      var currentTime = Date.now();
+      this.deltaTime = this.date - currentTime;
+      this.updateClocface(this.getTimeComponents());
+    }
+  }, {
+    key: "updateClocface",
+    value: function updateClocface(_ref2) {
+      var days = _ref2.days,
+          hours = _ref2.hours,
+          mins = _ref2.mins,
+          secs = _ref2.secs;
+      this.refElement.textContent = "".concat(days, ":").concat(hours, ":").concat(mins, ":").concat(secs);
     }
   }]);
 
@@ -162,35 +186,9 @@ var Timer = /*#__PURE__*/function () {
 
 var timer = new Timer({
   selector: '#timer-1',
-  targetDate: new Date('Jul 17, 2019'),
-  onTick: updateClocface
+  targetDate: new Date('Dec 17, 2020')
 });
 timer.start();
-
-function pad(value) {
-  return String(value).padStart(2, '0');
-}
-
-function getTimeComponents(time) {
-  var days = pad(Math.floor(time / (1000 * 60 * 60 * 24)));
-  var hours = pad(Math.floor(time % (1000 * 60 * 60 * 24) / (1000 * 60 * 60)));
-  var mins = pad(Math.floor(time % (1000 * 60 * 60) / (1000 * 60)));
-  var secs = pad(Math.floor(time % (1000 * 60) / 1000));
-  return {
-    days: days,
-    hours: hours,
-    mins: mins,
-    secs: secs
-  };
-}
-
-function updateClocface(_ref2) {
-  var days = _ref2.days,
-      hours = _ref2.hours,
-      mins = _ref2.mins,
-      secs = _ref2.secs;
-  timer.selector['#timer-1'] = "".concat(days, ":").concat(hours, ":").concat(mins, ":").concat(secs);
-}
 },{}],"../node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
@@ -219,7 +217,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "53403" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "58793" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
