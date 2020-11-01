@@ -1,0 +1,24 @@
+{
+  "name": "dz11-timer",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "dependencies": {
+    "parcel-bundler": "^1.12.4"
+  },
+  "devDependencies": {},
+  "scripts": {
+     "dev": "parcel src/index.html",
+    "build": "parcel build src/index.htmlnpm run"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/vosap2007/dz11-timer.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/vosap2007/dz11-timer/issues"
+  },
+  "homepage": "https://github.com/vosap2007/dz11-timer#readme"
+}
